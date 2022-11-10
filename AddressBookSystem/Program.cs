@@ -1,42 +1,37 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-
 namespace AddressBookSystem
 {
     internal class Program
     {
-        public static void Main(string[] args)
+        static void Main(string[] args)
         {
-            bool option = true;
-            while (option)
+            AddressBookMain add = new AddressBookMain();
+            bool flag = true;
+            while (flag)
             {
-                AddressBookMain create = new AddressBookMain();
-                Console.WriteLine("1.Create  2.Edit  3.Exit");
-                        int select = Convert.ToInt32(Console.ReadLine());
-                switch (select)
+                Console.WriteLine("1. Create  2. Edit  3.Delete  4.Display  5.Exit");
+                int option = Convert.ToInt32(Console.ReadLine());
+                switch (option)
                 {
                     case 1:
-                        Console.WriteLine("First Name " + "\n" + "Last Name " + "\n" + "Address " + "\n" +
-                                        "City " + "\n" + "State " + "\n" + "Zip " + "\n" +
-                                        "Phone Num " + "\n" + "Email ");
-                        create.CreateContact();
+                        add.CreateContact();
                         break;
                     case 2:
-                        Console.WriteLine("First Name " + "\n" + "Last Name " + "\n" + "Address " + "\n" +
-                                        "City " + "\n" + "State " + "\n" + "Zip " + "\n" +
-                                        "Phone Num " + "\n" + "Email ");
-                        create.EditContact("Prajakta");
+                        Console.Write("Enter FirstName and LastName to edit ");
+                        string edit = Console.ReadLine();
+                        add.EditContact(edit);
+                        break;
+                    case 3:
+                        Console.Write("Enter FirstName and LastName to Delete ");
+                        string delete = Console.ReadLine();
+                        add.Delete(delete);
+                        break;
+                    case 4:
+                        add.DisplayList();
                         break;
                     default:
-                        option = false;
+                        flag = false;
                         break;
-
                 }
             }
         }
